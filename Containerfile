@@ -12,7 +12,8 @@ RUN npm -v
 #RUN npm install
 
 RUN npm install -g @angular/cli \
-  && ng version
+  && ng version \
+  && ng analytics disable --global true
 
 #COPY . .
 RUN ng new --routing --style=css --strict --skip-git hello-angular \
