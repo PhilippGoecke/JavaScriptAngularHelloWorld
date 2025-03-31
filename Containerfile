@@ -25,7 +25,7 @@ WORKDIR /angular-app/hello-angular
 
 #CMD ng serve --host 0.0.0.0
 
-RUN ng build --configuration=production \
+RUN ng build --configuration=production --index \
   && ls -lisah dist \
   && ls -lisah dist/hello-angular
 
