@@ -13,7 +13,7 @@ RUN npm -v
 
 RUN npm install -g @angular/cli \
   && ng version \
-  && ng analytics off
+  && ng analytics disable
 
 #COPY . .
 RUN ng new --routing --style=css --strict --skip-git hello-angular \
