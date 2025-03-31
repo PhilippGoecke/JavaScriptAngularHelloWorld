@@ -16,10 +16,12 @@ RUN npm install -g @angular/cli \
   && ng analytics disable --global true
 
 #COPY . .
-RUN ng new --routing --style=css --strict --skip-git hello-angular \
+RUN ng new --routing --style=css --strict --ssr --server-routing --skip-git hello-angular \
   && ls -lisah hello-angular
 
 WORKDIR /angular-app/hello-angular
+
+RUN ng generate component greeting
 
 #EXPOSE 4200
 
