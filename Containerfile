@@ -14,7 +14,7 @@ RUN npm install -g @angular/cli \
 
 #COPY . .
 RUN ng new --routing --style=css --strict --skip-git hello-angular \
-  ls -lisah hello-angular
+  && ls -lisah hello-angular
 
 WORKDIR /angular-app/hello-angular
 
