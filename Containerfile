@@ -9,11 +9,11 @@ RUN npm -v
 
 #RUN npm install
 
-RUN npm install -g @angular-cli \
+RUN npm install -g @angular/cli \
   && ng version
 
 #COPY . .
-RUN np new --routing --style=css --strict --skip-git hello-angular \
+RUN ng new --routing --style=css --strict --skip-git hello-angular \
   ls -lisah hello-angular
 
 WORKDIR /angular-app/hello-angular
