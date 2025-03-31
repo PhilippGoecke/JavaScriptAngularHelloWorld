@@ -1,5 +1,7 @@
 FROM docker.io/node:lts-bookworm-slim as build
 
+ARG NG_CLI_ANALYTICS="false"
+
 WORKDIR /angular-app
 
 RUN node -v
