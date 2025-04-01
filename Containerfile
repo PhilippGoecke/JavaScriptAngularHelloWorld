@@ -27,7 +27,8 @@ RUN ng generate component greeting
 
 #CMD ng serve --host 0.0.0.0
 
-RUN ng build --configuration=production --index \
+#RUN ng build --configuration=production --index \
+RUN ng build -e=prod --prod --no-sourcemap --aot \
   && ls -lisah dist \
   && ls -lisah dist/hello-angular
 
