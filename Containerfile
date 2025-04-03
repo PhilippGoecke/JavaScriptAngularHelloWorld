@@ -11,7 +11,7 @@ RUN npm --version
 
 #RUN npm install
 
-RUN npm install -g @angular/cli \
+RUN npm install -g @angular/cli \https://github.com/PhilippGoecke/JavaScriptAngularHelloWorld/actions
   && ng version \
   && ng analytics disable --global true
 
@@ -23,7 +23,7 @@ WORKDIR /angular-app/hello-angular
 
 RUN cat src/app/app.component.html
 
-RUN ng generate module app-routing --flat --module=app.module.ts --routing \
+RUN ng generate module app-routing --flat --module=app-routing.module.ts --routing \
   && ng generate component greeting \
   && ng generate component home \
   && ng generate component about \
