@@ -11,7 +11,7 @@ RUN npm --version
 
 #RUN npm install
 
-RUN npm install -g @angular/cli \https://github.com/PhilippGoecke/JavaScriptAngularHelloWorld/actions
+RUN npm install -g @angular/cli \
   && ng version \
   && ng analytics disable --global true
 
