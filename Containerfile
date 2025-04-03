@@ -22,6 +22,8 @@ RUN ng new --routing --style=css --strict --skip-git hello-angular \
 WORKDIR /angular-app/hello-angular
 
 RUN cat src/app/app.component.html
+RUN cat src/app/app.component.ts
+RUN cat src/app/app.routes.ts
 
 RUN ng generate module app-routing --flat --module=app.routes.ts --routing \
   && ng generate component greeting \
