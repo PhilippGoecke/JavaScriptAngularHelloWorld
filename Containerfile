@@ -23,7 +23,7 @@ WORKDIR /angular-app/hello-angular
 
 RUN cat src/app/app.component.html
 
-RUN ng generate module app-routing --flat --module=app \
+RUN ng generate module app-routing --flat --module=app.module.ts --routing \
   && ng generate component greeting \
   && ng generate component home \
   && ng generate component about \
