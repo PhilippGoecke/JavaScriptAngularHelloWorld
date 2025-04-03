@@ -21,19 +21,21 @@ RUN ng new --routing --style=css --strict --ssr --server-routing --skip-git hell
 
 WORKDIR /angular-app/hello-angular
 
-RUN ng generate component greeting
+RUN cat src/app/app.component.html
+
+#RUN ng generate component greeting
 
 #EXPOSE 4200
 
 #CMD ng serve --host 0.0.0.0
 
-#RUN ng build --configuration=production --index \
-RUN ng build -e=prod --prod --no-sourcemap --aot \
+RUN ng build --configuration=production \
   && ls -lisah dist \
   && ls -lisah dist/hello-angular
+  && ls -lisah dist/hello-angular/browser
 
 FROM docker.io/nginx:stable-bookworm
 
-COPY --from=build /angular-app/hello-angular/dist/hello-angular /usr/share/nginx/html
+COPY --from=build /angular-app/hello-angular/dist/hello-angular/browser /usr/share/nginx/html
 
 EXPOSE 80
