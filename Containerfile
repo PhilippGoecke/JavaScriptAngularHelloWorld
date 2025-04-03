@@ -16,7 +16,7 @@ RUN npm install -g @angular/cli \
   && ng analytics disable --global true
 
 #COPY . .
-RUN ng new --routing --style=css --strict --ssr --server-routing --skip-git hello-angular \
+RUN ng new --routing --style=css --strict --skip-git hello-angular \
   && ls -lisah hello-angular
 
 WORKDIR /angular-app/hello-angular
@@ -36,6 +36,6 @@ RUN ng build --configuration=production \
 
 FROM docker.io/nginx:stable-bookworm
 
-COPY --from=build /angular-app/hello-angular/dist/hello-angular /usr/share/nginx/html
+COPY --from=build /angular-app/hello-angular/dist/hello-angular/browser /usr/share/nginx/html
 
 EXPOSE 80
