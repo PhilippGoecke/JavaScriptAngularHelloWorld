@@ -29,7 +29,7 @@ RUN ng generate module app-routing --flat --module=app.routes.ts --routing \
   && ng generate component greeting \
   && ng generate component home \
   && ng generate component about \
-  && ng generate module feature --route=feature --module=app-routing
+  && ng generate module feature --route=feature --module=app.routes.ts
 
 #EXPOSE 4200
 
