@@ -31,7 +31,7 @@ RUN cat src/app/app.component.html
 
 RUN ng build --configuration=production \
   && ls -lisah dist \
-  && ls -lisah dist/hello-angular
+  && ls -lisah dist/hello-angular \
   && ls -lisah dist/hello-angular/browser
 
 FROM docker.io/nginx:stable-bookworm
