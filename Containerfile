@@ -36,6 +36,6 @@ RUN ng build --configuration=production \
 
 FROM docker.io/nginx:stable-bookworm
 
-COPY --from=build /angular-app/hello-angular/dist/hello-angular/browser /usr/share/nginx/html
+COPY --from=build /angular-app/hello-angular/dist/hello-angular /usr/share/nginx/html
 
 EXPOSE 80
