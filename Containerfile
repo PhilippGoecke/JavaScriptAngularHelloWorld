@@ -25,11 +25,11 @@ RUN cat src/app/app.component.html
 RUN cat src/app/app.component.ts
 RUN cat src/app/app.routes.ts
 
-RUN ng generate module app-routing --flat --module=app.routes.ts --routing \
-  && ng generate component greeting \
-  && ng generate component home \
-  && ng generate component about \
-  && ng generate module feature --route=feature --module=app.routes.ts
+#RUN ng generate module app-routing --flat --module=app.routes.ts --routing \
+#  && ng generate component greeting \
+#  && ng generate component home \
+#  && ng generate component about \
+#  && ng generate module feature --route=feature --module=app.routes.ts
 
 #EXPOSE 4200
 
