@@ -2,7 +2,6 @@ FROM debian:trixie-slim as build
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-#SHELL ["/bin/bash", "-c"]
 RUN rm /bin/sh \
   && ln -s /bin/bash /bin/sh
 
@@ -18,7 +17,6 @@ ENV HOME="/root"
 ENV PATH="$HOME/.nvm/versions/node/v$NODE_VERSION/bin/:$PATH"
 RUN git clone --depth 1 https://github.com/nvm-sh/nvm.git ~/.nvm \
   && source $HOME/.nvm/nvm.sh \
-  #&& echo "\nexport NVM_DIR=\"$HOME/.nvm\"\n[ -s \"$NVM_DIR/nvm.sh\" ] && \. \"$NVM_DIR/nvm.sh\"\n[ -s \"$NVM_DIR/bash_completion\" ] && \. \"$NVM_DIR/bash_completion\"" >> ~/.bash_rc \
   && nvm --version \
   && nvm install $NODE_VERSION \
   && which node \
@@ -36,31 +34,40 @@ WORKDIR /angular-app
 RUN node -v
 RUN npm --version
 
-#COPY package*.json .
-
-#RUN npm install
-
 RUN npm install -g @angular/cli \
   && ng version \
   && ng analytics disable --global true
 
-#COPY . .
 RUN ng new --style=css --strict --skip-git hello-angular \
   && ls -lisah hello-angular
 
 WORKDIR /angular-app/hello-angular
 
-RUN cat src/app/app.routes.ts
+# Replace the app component to read ?name=... and display Angular version
+RUN set -eux; \
+  cat > src/app/app.component.ts <<'TS'\
+import { Component, VERSION } from '@angular/core';
 
-#RUN ng generate module app-routing --flat --module=app.routes.ts --routing \
-#  && ng generate component greeting \
-#  && ng generate component home \
-#  && ng generate component about \
-#  && ng generate module feature --route=feature --module=app.routes.ts
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css'
+})
+export class AppComponent {
+  name: string;
+  angularVersion = VERSION.full;
 
-#EXPOSE 4200
-
-#CMD ng serve --host 0.0.0.0
+  constructor() {
+    const params = new URLSearchParams(window.location.search);
+    this.name = params.get('name') || 'World';
+  }
+}
+TS \
+  && cat > src/app/app.component.html <<'HTML'\
+<h1>Hello {{ name }}!</h1>
+<p>Angular {{ angularVersion }}</p>
+HTML
 
 RUN ng build --configuration=production \
   && ls -lisah dist \
