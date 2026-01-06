@@ -70,7 +70,7 @@ RUN ng build --configuration=production \
   && ls -lisah dist/hello-angular \
   && ls -lisah dist/hello-angular/browser
 
-FROM docker.io/nginx:stable-bookworm
+FROM docker.io/nginx:stable-trixie
 
 COPY --from=build /angular-app/hello-angular/dist/hello-angular/browser /usr/share/nginx/html
 
