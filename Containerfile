@@ -52,9 +52,8 @@ WORKDIR /angular-app/hello-angular
 
 RUN cat src/app/app.routes.ts
 
-COPY app/app.component.ts src/app/
-COPY app/app.component.html src/app/
-COPY app/app.component.css src/app/
+COPY app/app.ts src/app/
+COPY app/app.html src/app/
 
 #RUN ng generate module app-routing --flat --module=app.routes.ts --routing \
 #  && ng generate component greeting \
